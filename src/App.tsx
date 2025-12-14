@@ -34,7 +34,7 @@ function App() {
     const newMajorVersion = oldMajorVersion;
     let newMinorVersion = oldMinorVersion;
     let newBugsVersion = oldBugsVersion;
-    const uniqueLines = new Set(commits.split("\n"));
+    const uniqueLines = new Set(commits.trim().split("\n"));
     let hasFeature = false;
     for (const line of uniqueLines) {
       if (
