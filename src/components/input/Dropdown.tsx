@@ -26,8 +26,7 @@ export const Dropdown = ({ options, label, setValue }: SelectProps) => {
             <SelectItem
               id={`${index}-${item}`}
               value={item}
-              key={`${index}-${item}`}
-            >
+              key={`${index}-${item}`}>
               {item}
             </SelectItem>
           ))}

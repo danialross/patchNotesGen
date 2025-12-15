@@ -7,7 +7,7 @@ import Logo from "./assets/Account-X-page-logo.png";
 import { ButtonWithDialog } from "@/components/input/ButtonWithDialog.tsx";
 import { useState } from "react";
 
-const branches = ["ent-uat", "dev-internal"];
+const branches = ["Ent UAT", "Dev-Internal"];
 
 function App() {
   const [branch, setBranch] = useState("");
@@ -23,7 +23,7 @@ function App() {
       !!date &&
       !!oldMajorVersion &&
       !!oldMinorVersion &&
-      !!oldBugsVersion &&
+      oldBugsVersion !== undefined &&
       !!commits
     );
   };
@@ -38,14 +38,16 @@ function App() {
     let hasFeature = false;
     for (const line of uniqueLines) {
       if (
-        line.startsWith("feat") ||
-        line.startsWith("Feat") ||
-        line.startsWith("feature") ||
-        line.startsWith("Feature")
+        line.toLocaleLowerCase().startsWith("feat") ||
+        line.toLocaleLowerCase().startsWith("feature")
       ) {
         enhancement += `- ${line}\n`;
         hasFeature = true;
-      } else {
+      } else if (
+        line.toLocaleLowerCase().startsWith("chore") ||
+        line.toLocaleLowerCase().startsWith("fix") ||
+        line.toLocaleLowerCase().startsWith("mirror")
+      ) {
         bugFixes += `- ${line}\n`;
       }
     }
@@ -72,34 +74,35 @@ Previous Version: v${oldMajorVersion}.${oldMinorVersion}.${oldBugsVersion}\n` +
   return (
     <div
       className={
-        "relative overflow-hidden w-screen h-screen flex flex-col justify-start items-center bg-[#FFCE85] text-xl"
-      }
-    >
-      <div className={"w-[500px] py-8"}>
+        "relative overflow-x-hidden w-screen h-screen flex flex-col justify-start items-center bg-[#FFCE85] text-xl"
+      }>
+      <div className={"w-[350px] py-8 translate-x-4"}>
         <img src={Logo} alt="logo" />
         <Label className={"text-2xl"}>Patch Notes Generator</Label>
       </div>
-      <div className={"flex gap-8 py-2 w-[500px]"}>
+      <div className={"flex gap-8 py-2 sm:w-[350px] md:w-[500px]"}>
         <DatePicker setValue={setDate} />
         <Dropdown label={"Branch"} options={branches} setValue={setBranch} />
       </div>
       <div className={"flex gap-8 py-2 w-[250px]"}>
         <VersionPicker
-          label={"Old Version"}
+          label={"Version"}
           setMajorVersion={setOldMajorVersion}
           setMinorVersion={setOldMinorVersion}
           setBugsVersion={setOldBugsVersion}
         />
       </div>
-      <div className={"flex flex-col gap-3 pt-8 w-[500px]"}>
+      <div className={"flex flex-col gap-3 pt-8"}>
         <Label className={"text-sm px-2 font-medium"}>Commits</Label>
         <Textarea
-          className={"h-[300px] border-gray-50 bg-white resize-none"}
+          className={
+            "border-gray-50 bg-white resize-none w-[300px] md:w-[500px] h-full min-h-[200px]"
+          }
           placeholder="Type your message here."
           onChange={(e) => setCommits(e.target.value)}
         />
       </div>
-      <div className={"w-[500px] flex justify-end pt-8"}>
+      <div className={"w-[300px] md:w-[500px] flex justify-end py-8"}>
         <ButtonWithDialog
           disabled={!isInputValid()}
           patchNotes={createPatchNotes()}

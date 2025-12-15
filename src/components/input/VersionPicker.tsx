@@ -16,7 +16,7 @@ export const VersionPicker = ({
 }: VersionPickerProps) => {
   return (
     <div className={"w-full  flex flex-col"}>
-      <Label className={"py-3 px-2"}>{label}</Label>
+      <Label className={"py-3"}>{label}</Label>
       <div className={"flex justify-end gap-1 items-end"}>
         v.
         <Input

@@ -48,8 +48,7 @@ export function ButtonWithDialog({
           className={
             "w-[100px] h-[40px] hover:bg-[#EE9332] hover:text-white border-none"
           }
-          disabled={disabled}
-        >
+          disabled={disabled}>
           Generate
         </Button>
       </AlertDialogTrigger>
@@ -59,14 +58,18 @@ export function ButtonWithDialog({
         </AlertDialogHeader>
         <AlertDialogDescription>
           <Textarea
-            className={"resize-none h-[500px] w-full border-gray-300"}
-            disabled
+            className={
+              "resize-none min-h-[200px] max-h-[400px] border-gray-300 text-black"
+            }
+            readOnly
             value={patchNotes}
           />
         </AlertDialogDescription>
         <AlertDialogFooter>
-          <div className="flex justify-evenly w-full">
-            <Button onClick={handleCopyText}>
+          <div className="flex justify-evenly w-full ">
+            <Button
+              onClick={handleCopyText}
+              className="hover:bg-[#EE9332] hover:text-white">
               <ContentCopyIcon fontSize={"small"} />
               Copy
             </Button>
@@ -77,8 +80,7 @@ export function ButtonWithDialog({
           </div>
         </AlertDialogFooter>
         <div
-          className={`transition-opacity duration-300 ${isAlerted ? "opacity-100" : "opacity-0"} absolute top-3/4 left-1/2 -translate-1/2 bg-white py-4 px-8 border-2 border-gray-200 rounded-md`}
-        >
+          className={`transition-opacity duration-300 ${isAlerted ? "opacity-100" : "opacity-0"} absolute top-3/4 left-1/2 -translate-1/2 bg-white py-4 px-8 border-2 border-gray-200 rounded-md`}>
           Copied
         </div>
       </AlertDialogContent>
