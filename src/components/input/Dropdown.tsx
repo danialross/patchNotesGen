@@ -18,7 +18,7 @@ export const Dropdown = ({ options, label, setValue }: SelectProps) => {
     <div className={"w-full flex flex-col justify-center items-start gap-3"}>
       <Label className={" px-2"}>{label}</Label>
       <Select onValueChange={setValue}>
-        <SelectTrigger className="w-full bg-white hover:bg-gray-100 ">
+        <SelectTrigger className="w-full bg-white hover:bg-gray-100 border-2 border-[#FFC670]">
           <SelectValue placeholder="Select a branch" />
         </SelectTrigger>
         <SelectContent>

@@ -12,6 +12,8 @@ import { Textarea } from "@/components/ui/textarea.tsx";
 import { useEffect, useState } from "react";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import CloseIcon from "@mui/icons-material/Close";
+import HandymanIcon from "@mui/icons-material/Handyman";
+
 type ButtonWithDialogProps = {
   disabled: boolean;
   patchNotes: string;
@@ -43,14 +45,17 @@ export function ButtonWithDialog({
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
       <AlertDialogTrigger asChild>
-        <Button
-          variant="outline"
-          className={
-            "w-[100px] h-[40px] hover:bg-[#EE9332] hover:text-white border-none"
-          }
-          disabled={disabled}>
-          Generate
-        </Button>
+        <div className="h-full flex items-center">
+          <Button
+            variant="outline"
+            className={
+              "w-[200px] h-[50px] lg:h-[100px] text-lg hover:bg-[#EE9332] hover:text-white border-none"
+            }
+            disabled={disabled}>
+            <HandymanIcon />
+            Generate
+          </Button>
+        </div>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
@@ -69,7 +74,7 @@ export function ButtonWithDialog({
           <div className="flex justify-evenly w-full ">
             <Button
               onClick={handleCopyText}
-              className="hover:bg-[#EE9332] hover:text-white">
+              className="hover:bg-[#B46C00] hover:text-white">
               <ContentCopyIcon fontSize={"small"} />
               Copy
             </Button>

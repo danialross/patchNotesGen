@@ -30,8 +30,7 @@ export function DatePicker({ setValue }: props) {
           <Button
             variant="outline"
             id="date"
-            className="w-full justify-between font-normal"
-          >
+            className="w-full justify-between font-normal border-2 border-[#FFC670]">
             {date ? date.toLocaleDateString() : "Select date"}
             <ChevronDownIcon />
           </Button>

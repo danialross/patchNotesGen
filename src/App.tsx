@@ -6,6 +6,9 @@ import { Label } from "@radix-ui/react-label";
 import Logo from "./assets/Account-X-page-logo.png";
 import { ButtonWithDialog } from "@/components/input/ButtonWithDialog.tsx";
 import { useState } from "react";
+import { Card } from "./components/ui/card";
+import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
+import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 
 const branches = ["Ent UAT", "Dev-Internal"];
 
@@ -74,39 +77,61 @@ Previous Version: v${oldMajorVersion}.${oldMinorVersion}.${oldBugsVersion}\n` +
   return (
     <div
       className={
-        "relative overflow-x-hidden w-screen h-screen flex flex-col justify-start items-center bg-[#FFCE85] text-xl"
+        "bg-[#FFC670] relative overflow-x-hidden w-screen h-screen flex flex-col justify-start items-center "
       }>
       <div className={"w-[350px] py-8 translate-x-4"}>
         <img src={Logo} alt="logo" />
         <Label className={"text-2xl"}>Patch Notes Generator</Label>
       </div>
-      <div className={"flex gap-8 py-2 sm:w-[350px] md:w-[500px]"}>
-        <DatePicker setValue={setDate} />
-        <Dropdown label={"Branch"} options={branches} setValue={setBranch} />
-      </div>
-      <div className={"flex gap-8 py-2 w-[250px]"}>
-        <VersionPicker
-          label={"Version"}
-          setMajorVersion={setOldMajorVersion}
-          setMinorVersion={setOldMinorVersion}
-          setBugsVersion={setOldBugsVersion}
-        />
-      </div>
-      <div className={"flex flex-col gap-3 pt-8"}>
-        <Label className={"text-sm px-2 font-medium"}>Commits</Label>
-        <Textarea
-          className={
-            "border-gray-50 bg-white resize-none w-[300px] md:w-[500px] h-full min-h-[200px]"
-          }
-          placeholder="Type your message here."
-          onChange={(e) => setCommits(e.target.value)}
-        />
-      </div>
-      <div className={"w-[300px] md:w-[500px] flex justify-end py-8"}>
-        <ButtonWithDialog
-          disabled={!isInputValid()}
-          patchNotes={createPatchNotes()}
-        />
+      <div className={"flex flex-col lg:flex-row gap-8 py-2"}>
+        <div className="flex flex-col w-full items-center">
+          <Card>
+            <DatePicker setValue={setDate} />
+          </Card>
+          <div className="w-full flex justify-center py-2 ">
+            <UnfoldMoreIcon fontSize="large" />
+          </div>
+          <Card>
+            <Dropdown
+              label={"Branch"}
+              options={branches}
+              setValue={setBranch}
+            />
+          </Card>
+          <div className="w-full flex justify-center py-2 ">
+            <UnfoldMoreIcon fontSize="large" />
+          </div>
+          <Card>
+            <VersionPicker
+              label={"Version"}
+              setMajorVersion={setOldMajorVersion}
+              setMinorVersion={setOldMinorVersion}
+              setBugsVersion={setOldBugsVersion}
+            />
+          </Card>
+        </div>
+        <div className="flex flex-col w-full h-full justify-center items-center">
+          <UnfoldMoreIcon fontSize="large" className="transform lg:rotate-90" />
+        </div>
+        <div className="flex flex-col gap-4 p-4 bg-gray-50 border-2 border-[#FF9D0A] p-4 rounded-md ">
+          <Label className={"text-sm px-2 font-medium"}>Commits</Label>
+          <Textarea
+            className={
+              "border-2 border-[#FF9D0A] bg-white resize-none w-[400px] h-[330px]"
+            }
+            placeholder="Type your message here."
+            onChange={(e) => setCommits(e.target.value)}
+          />
+        </div>
+        <div className="w-full lg:h-full flex items-center justify-center transform rotate-90 lg:rotate-0">
+          <KeyboardDoubleArrowRightIcon fontSize="large" />
+        </div>
+        <div className="flex flex-col w-full h-full items-center">
+          <ButtonWithDialog
+            disabled={!isInputValid()}
+            patchNotes={createPatchNotes()}
+          />
+        </div>
       </div>
     </div>
   );
