@@ -44,19 +44,32 @@ export function ButtonWithDialog({
 
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
-      <AlertDialogTrigger asChild>
+      {disabled ? (
         <div className="h-full flex items-center">
           <Button
             variant="outline"
             className={
               "w-[200px] h-[50px] lg:h-[100px] text-lg hover:bg-[#EE9332] hover:text-white border-none"
             }
-            disabled={disabled}>
+            disabled>
             <HandymanIcon />
             Generate
           </Button>
         </div>
-      </AlertDialogTrigger>
+      ) : (
+        <AlertDialogTrigger asChild>
+          <div className="h-full flex items-center">
+            <Button
+              variant="outline"
+              className={
+                "w-[200px] h-[50px] lg:h-[100px] text-lg hover:bg-[#EE9332] hover:text-white border-none"
+              }>
+              <HandymanIcon />
+              Generate
+            </Button>
+          </div>
+        </AlertDialogTrigger>
+      )}
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Patch Notes is Ready!</AlertDialogTitle>
