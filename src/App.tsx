@@ -39,6 +39,7 @@ function App() {
     let newBugsVersion = oldBugsVersion;
     const uniqueLines = new Set(commits.trim().split("\n"));
     let hasFeature = false;
+    let hasBugFix = false;
     for (const line of uniqueLines) {
       if (
         line.toLocaleLowerCase().startsWith("feat") ||
@@ -52,6 +53,7 @@ function App() {
         line.toLocaleLowerCase().startsWith("mirror")
       ) {
         bugFixes += `- ${line}\n`;
+        hasBugFix = true
       }
     }
 
@@ -68,8 +70,8 @@ function App() {
 Release Date: [${date?.getDate()}/${date?.getMonth()}/${date?.getFullYear()}]
 Version: v${newMajorVersion}.${newMinorVersion}.${newBugsVersion}
 Previous Version: v${oldMajorVersion}.${oldMinorVersion}.${oldBugsVersion}\n` +
-      `${(hasFeature && enhancement) || ""}\n` +
-      `${bugFixes}\n` +
+      `${(hasFeature ? enhancement : "")}\n` +
+      `${(hasBugFix ? bugFixes : "")}\n` +
       "```"
     );
   };
