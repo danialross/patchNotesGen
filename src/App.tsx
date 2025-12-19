@@ -79,9 +79,9 @@ Previous Version: v${oldMajorVersion}.${oldMinorVersion}.${oldBugsVersion}\n` +
   return (
     <div
       className={
-        "bg-[#FFC670] relative overflow-x-hidden w-screen h-screen flex flex-col justify-start items-center "
+        "bg-[#FFC670] relative min-h-screen flex flex-col justify-start items-center gap-8 py-16"
       }>
-      <div className={"w-[350px] py-8 translate-x-4"}>
+      <div className={"w-[350px] translate-x-4 "}>
         <img src={Logo} alt="logo" />
         <Label className={"text-2xl"}>Patch Notes Generator</Label>
       </div>
@@ -112,10 +112,10 @@ Previous Version: v${oldMajorVersion}.${oldMinorVersion}.${oldBugsVersion}\n` +
             />
           </Card>
         </div>
-        <div className="flex flex-col w-full h-full justify-center items-center">
+        <div className="flex flex-col justify-center items-center">
           <UnfoldMoreIcon fontSize="large" className="transform lg:rotate-90" />
         </div>
-        <div className="flex flex-col gap-4 p-4 bg-gray-50 border-2 border-[#FF9D0A] p-4 rounded-md ">
+        <div className="flex flex-col gap-4 p-4 bg-gray-50 border-2 border-[#FF9D0A] rounded-md ">
           <Label className={"text-sm px-2 font-medium"}>Commits</Label>
           <Textarea
             className={
@@ -125,10 +125,10 @@ Previous Version: v${oldMajorVersion}.${oldMinorVersion}.${oldBugsVersion}\n` +
             onChange={(e) => setCommits(e.target.value)}
           />
         </div>
-        <div className="w-full lg:h-full flex items-center justify-center transform rotate-90 lg:rotate-0">
+        <div className="flex items-center justify-center transform rotate-90 lg:rotate-0">
           <KeyboardDoubleArrowRightIcon fontSize="large" />
         </div>
-        <div className="flex flex-col w-full h-full items-center">
+        <div className="flex justify-center">
           <ButtonWithDialog
             disabled={!isInputValid()}
             patchNotes={createPatchNotes()}

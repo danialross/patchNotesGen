@@ -49,7 +49,7 @@ export function ButtonWithDialog({
           <Button
             variant="outline"
             className={
-              "w-[200px] h-[50px] lg:h-[100px] text-lg hover:bg-[#EE9332] hover:text-white border-none"
+              "w-[200px] h-[100px] text-lg hover:bg-[#EE9332] hover:text-white border-none"
             }
             disabled>
             <HandymanIcon />
