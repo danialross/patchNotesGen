@@ -1,5 +1,4 @@
 import { DatePicker } from "@/components/input/DatePicker.tsx";
-import { Textarea } from "@/components/ui/textarea.tsx";
 import { Dropdown } from "@/components/input/Dropdown.tsx";
 import { VersionPicker } from "@/components/input/VersionPicker.tsx";
 import { Label } from "@radix-ui/react-label";
@@ -9,6 +8,7 @@ import { useState } from "react";
 import { Card } from "./components/ui/card";
 import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
+import {CommitTextField} from "@/components/input/CommitTextField.tsx";
 
 const branches = ["Ent UAT", "Dev-Internal"];
 
@@ -116,13 +116,7 @@ Previous Version: v${oldMajorVersion}.${oldMinorVersion}.${oldBugsVersion}\n` +
           <UnfoldMoreIcon fontSize="large" className="transform lg:rotate-90" />
         </div>
         <div className="flex flex-col gap-4 p-4 bg-gray-50 border-2 border-[#FF9D0A] rounded-md ">
-          <Label className={"text-sm px-2 font-medium"}>Commits</Label>
-          <Textarea
-            className={
-              "border-2 border-[#FF9D0A] bg-white resize-none w-[400px] h-[330px]"
-            }
-            placeholder="Type your message here."
-            onChange={(e) => setCommits(e.target.value)}
+          <CommitTextField setValue={setCommits}
           />
         </div>
         <div className="flex items-center justify-center transform rotate-90 lg:rotate-0">
