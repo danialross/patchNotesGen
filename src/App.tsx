@@ -8,7 +8,7 @@ import { useState } from "react";
 import { Card } from "./components/ui/card";
 import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
-import {CommitTextField} from "@/components/input/CommitTextField.tsx";
+import { CommitTextField } from "@/components/input/CommitTextField.tsx";
 
 const branches = ["Ent UAT", "Dev-Internal"];
 
@@ -53,7 +53,7 @@ function App() {
         line.toLocaleLowerCase().startsWith("mirror")
       ) {
         bugFixes += `- ${line}\n`;
-        hasBugFix = true
+        hasBugFix = true;
       }
     }
 
@@ -71,8 +71,8 @@ Release Date: [${date?.getDate()}/${date?.getMonth()}/${date?.getFullYear()}]
 Version: v${newMajorVersion}.${newMinorVersion}.${newBugsVersion}
 Previous Version: v${oldMajorVersion}.${oldMinorVersion}.${oldBugsVersion}\n
 ` +
-      `${(hasFeature ? enhancement : "")}\n` +
-      `${(hasBugFix ? bugFixes : "")}\n` +
+      `${hasFeature ? enhancement : ""}\n` +
+      `${hasBugFix ? bugFixes : ""}\n` +
       "```"
     );
   };
@@ -80,7 +80,7 @@ Previous Version: v${oldMajorVersion}.${oldMinorVersion}.${oldBugsVersion}\n
   return (
     <div
       className={
-        "bg-[#FFC670] overflow-x-hidden relative min-h-screen flex flex-col justify-start items-center gap-8 py-16"
+        "bg-[#FFC670] overflow-x-hidden relative min-h-screen flex flex-col justify-start items-center gap-8 py-8 2xl:py-32"
       }>
       <div className={"w-[350px] translate-x-4 "}>
         <img src={Logo} alt="logo" />
@@ -117,8 +117,7 @@ Previous Version: v${oldMajorVersion}.${oldMinorVersion}.${oldBugsVersion}\n
           <UnfoldMoreIcon fontSize="large" className="transform lg:rotate-90" />
         </div>
         <div className="w-[350px] lg:w-[400px] flex flex-col gap-4 p-4 bg-gray-50 border-2 border-[#FF9D0A] rounded-md ">
-          <CommitTextField setValue={setCommits}
-          />
+          <CommitTextField setValue={setCommits} />
         </div>
         <div className="flex items-center justify-center transform rotate-90 lg:rotate-0">
           <KeyboardDoubleArrowRightIcon fontSize="large" />
