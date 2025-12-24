@@ -20,19 +20,22 @@ export const VersionPicker = ({
       <div className={"flex justify-end gap-1 items-end"}>
         v.
         <Input
-          className={"w-full bg-white h-8 border-2 border-[#FFC670]"}
+            className={"number-input w-full bg-white h-8 border-2 border-[#FFC670] focus-visible:ring-[#FFC670] focus-visible:border-[#FF9D0A]"}
           type={"number"}
+            onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
+              if(e.key === "-" || e.key ==="e") {e.preventDefault()}
+            }}
           onChange={(e) => setMajorVersion(Number(e.target.value))}
         />
         .
         <Input
-          className={"w-full bg-white h-8 border-2 border-[#FFC670]"}
+            className={"number-input w-full bg-white h-8 border-2 border-[#FFC670] focus-visible:ring-[#FFC670] focus-visible:border-[#FF9D0A]"}
           type={"number"}
           onChange={(e) => setMinorVersion(Number(e.target.value))}
         />
         .
         <Input
-          className={"w-full bg-white h-8 border-2 border-[#FFC670]"}
+            className={"number-input w-full bg-white h-8 border-2 border-[#FFC670] focus-visible:ring-[#FFC670] focus-visible:border-[#FF9D0A]"}
           type={"number"}
           onChange={(e) => setBugsVersion(Number(e.target.value))}
         />

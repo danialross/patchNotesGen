@@ -69,7 +69,8 @@ function App() {
       `[Release Notes - ${branch} Version v${newMajorVersion}.${newMinorVersion}.${newBugsVersion}]
 Release Date: [${date?.getDate()}/${date?.getMonth()}/${date?.getFullYear()}]
 Version: v${newMajorVersion}.${newMinorVersion}.${newBugsVersion}
-Previous Version: v${oldMajorVersion}.${oldMinorVersion}.${oldBugsVersion}\n` +
+Previous Version: v${oldMajorVersion}.${oldMinorVersion}.${oldBugsVersion}\n
+` +
       `${(hasFeature ? enhancement : "")}\n` +
       `${(hasBugFix ? bugFixes : "")}\n` +
       "```"
@@ -79,7 +80,7 @@ Previous Version: v${oldMajorVersion}.${oldMinorVersion}.${oldBugsVersion}\n` +
   return (
     <div
       className={
-        "bg-[#FFC670] relative min-h-screen flex flex-col justify-start items-center gap-8 py-16"
+        "bg-[#FFC670] overflow-x-hidden relative min-h-screen flex flex-col justify-start items-center gap-8 py-16"
       }>
       <div className={"w-[350px] translate-x-4 "}>
         <img src={Logo} alt="logo" />

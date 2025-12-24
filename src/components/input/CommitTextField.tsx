@@ -11,7 +11,7 @@ return <>
 	<Label className={"text-sm px-2 font-medium"}>Commits</Label>
 	<Textarea
 		className={
-			"border-2 border-[#FFC670] bg-white resize-none w-[400px] h-[330px]"
+			"border-2 border-[#FFC670] bg-white resize-none w-[400px] h-[330px] focus-visible:ring-[#FFC670] focus-visible:border-[#FF9D0A]"
 		}
 		placeholder="Type your message here."
 		onChange={(e) => setValue(e.target.value)}
