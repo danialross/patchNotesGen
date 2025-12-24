@@ -82,7 +82,7 @@ Previous Version: v${oldMajorVersion}.${oldMinorVersion}.${oldBugsVersion}\n
       className={
         "bg-[#FFC670] overflow-x-hidden relative min-h-screen flex flex-col justify-start items-center gap-8 py-[7vh]"
       }>
-      <div className={"w-[350px] translate-x-4 "}>
+      <div className={"w-[350px] translate-x-8"}>
         <img src={Logo} alt="logo" />
         <Label className={"text-2xl"}>Patch Notes Generator</Label>
       </div>
