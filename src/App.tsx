@@ -86,8 +86,8 @@ Previous Version: v${oldMajorVersion}.${oldMinorVersion}.${oldBugsVersion}\n
         <img src={Logo} alt="logo" />
         <Label className={"text-2xl"}>Patch Notes Generator</Label>
       </div>
-      <div className={"flex flex-col lg:flex-row gap-8 py-2"}>
-        <div className="flex flex-col w-full items-center">
+      <div className={"flex flex-col lg:flex-row gap-4 lg:gap-8 py-2"}>
+        <div className="flex flex-col items-center gap-2 lg:gap-4">
           <Card>
             <DatePicker setValue={setDate} />
           </Card>
@@ -116,7 +116,7 @@ Previous Version: v${oldMajorVersion}.${oldMinorVersion}.${oldBugsVersion}\n
         <div className="flex flex-col justify-center items-center">
           <UnfoldMoreIcon fontSize="large" className="transform lg:rotate-90" />
         </div>
-        <div className="flex flex-col gap-4 p-4 bg-gray-50 border-2 border-[#FF9D0A] rounded-md ">
+        <div className="w-[350px] lg:w-[400px] flex flex-col gap-4 p-4 bg-gray-50 border-2 border-[#FF9D0A] rounded-md ">
           <CommitTextField setValue={setCommits}
           />
         </div>
