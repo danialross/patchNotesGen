@@ -80,7 +80,7 @@ Previous Version: v${oldMajorVersion}.${oldMinorVersion}.${oldBugsVersion}\n
   return (
     <div
       className={
-        "bg-[#FFC670] overflow-x-hidden relative min-h-screen flex flex-col justify-start items-center gap-8 py-8 2xl:py-32"
+        "bg-[#FFC670] overflow-x-hidden relative min-h-screen flex flex-col justify-start items-center gap-8 py-[7vh]"
       }>
       <div className={"w-[350px] translate-x-4 "}>
         <img src={Logo} alt="logo" />
