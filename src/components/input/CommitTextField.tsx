@@ -12,7 +12,7 @@ export const CommitTextField = ({ setValue }: Props) => {
       <Label className={"text-sm px-2 font-medium"}>Commits</Label>
       <Textarea
         className={
-          "border-2 border-[#FFC670] bg-white resize-none w-full h-full min-h-[320px] focus-visible:ring-[#FFC670] focus-visible:border-[#FF9D0A]"
+          "border-2 border-[#FFC670] bg-white resize-none w-full h-full  max-h-[380px] focus-visible:ring-[#FFC670] focus-visible:border-[#FF9D0A]"
         }
         placeholder="Type commit messages here."
         onChange={(e) => setValue(e.target.value)}
