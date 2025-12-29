@@ -10,7 +10,13 @@ import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import { CommitTextField } from "@/components/input/CommitTextField.tsx";
 
-const branches = ["Ent UAT", "Dev-Internal"];
+const branches = [
+  "Ent UAT",
+  "Dev-Internal",
+  "Dev-Lite",
+  "Staging-Lite",
+  "Ent-Train",
+];
 
 function App() {
   const [branch, setBranch] = useState("");
@@ -67,7 +73,7 @@ function App() {
     return (
       "```\n" +
       `[Release Notes - ${branch} Version v${newMajorVersion}.${newMinorVersion}.${newBugsVersion}]
-Release Date: [${date?.getDate()}/${date?.getMonth()}/${date?.getFullYear()}]
+Release Date: [${date?.getDate()}/${date ? date.getMonth() + 1 : ""}/${date?.getFullYear()}]
 Version: v${newMajorVersion}.${newMinorVersion}.${newBugsVersion}
 Previous Version: v${oldMajorVersion}.${oldMinorVersion}.${oldBugsVersion}\n
 ` +
