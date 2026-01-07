@@ -45,29 +45,25 @@ export function ButtonWithDialog({
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
       {disabled ? (
-        <div className="h-full flex items-center">
+        <Button
+          variant="outline"
+          className={
+            "sm:w-[200px] lg:w-[250px] h-[50px] xl:h-[100px] text-lg hover:bg-[#EE9332] hover:text-white border-none"
+          }
+          disabled>
+          <HandymanIcon />
+          Generate
+        </Button>
+      ) : (
+        <AlertDialogTrigger asChild>
           <Button
             variant="outline"
             className={
-              "w-[200px] h-[100px] text-lg hover:bg-[#EE9332] hover:text-white border-none"
-            }
-            disabled>
+              "sm:w-[200px] lg:w-[350px] h-[50px] lg:h-[100px] text-lg hover:bg-[#EE9332] hover:text-white border-none"
+            }>
             <HandymanIcon />
             Generate
           </Button>
-        </div>
-      ) : (
-        <AlertDialogTrigger asChild>
-          <div className="h-full flex items-center">
-            <Button
-              variant="outline"
-              className={
-                "w-[200px] h-[50px] lg:h-[100px] text-lg hover:bg-[#EE9332] hover:text-white border-none"
-              }>
-              <HandymanIcon />
-              Generate
-            </Button>
-          </div>
         </AlertDialogTrigger>
       )}
       <AlertDialogContent>
