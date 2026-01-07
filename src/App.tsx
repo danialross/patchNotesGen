@@ -123,13 +123,13 @@ Previous Version: v${oldMajorVersion}.${oldMinorVersion}.${oldBugsVersion}\n
           <UnfoldMoreIcon fontSize="large" className="transform lg:rotate-90" />
         </div>
         <div className="flex flex-col gap-4 lg:gap-8 xl:flex-row">
-          <div className=" w-[250px] lg:w-[450px] h-[335px] xl:h-full flex flex-col gap-4 p-4 bg-gray-50 border-2 border-[#FF9D0A] rounded-md ">
+          <div className=" w-[350px] lg:w-[450px] h-[335px] xl:h-full flex flex-col gap-4 p-4 bg-gray-50 border-2 border-[#FF9D0A] rounded-md ">
             <CommitTextField setValue={setCommits} />
           </div>
           <div className="flex items-center justify-center transform rotate-90 lg:rotate-0 lg:hidden xl:flex">
             <KeyboardDoubleArrowRightIcon fontSize="large" />
           </div>
-          <div className="flex justify-center items-center h-[100px] xl:h-full gap-4">
+          <div className="flex justify-center items-start lg:items-center h-[100px] xl:h-full gap-4">
             <ButtonWithDialog
               disabled={!isInputValid()}
               patchNotes={createPatchNotes()}
