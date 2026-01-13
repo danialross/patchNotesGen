@@ -48,7 +48,7 @@ export function ButtonWithDialog({
         <Button
           variant="outline"
           className={
-            "w-[300px] h-[50px] xl:h-[100px] text-lg hover:bg-[#EE9332] hover:text-white border-none"
+            "w-[350px] lg:w-[250px] h-[50px] lg:h-[100px]  text-lg hover:bg-[#EE9332] hover:text-white border-none"
           }
           disabled>
           <HandymanIcon />
@@ -59,7 +59,7 @@ export function ButtonWithDialog({
           <Button
             variant="outline"
             className={
-              "sm:w-[200px] lg:w-[350px] h-[50px] lg:h-[100px] text-lg hover:bg-[#EE9332] hover:text-white border-none"
+              "w-[350px] lg:w-[250px] h-[50px] lg:h-[100px] text-lg hover:bg-[#EE9332] hover:text-white border-none"
             }>
             <HandymanIcon />
             Generate

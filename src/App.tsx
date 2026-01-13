@@ -30,9 +30,9 @@ function App() {
     return (
       !!branch &&
       !!date &&
-      !!oldMajorVersion &&
-      !!oldMinorVersion &&
-      oldBugsVersion !== undefined &&
+      oldMajorVersion > 0 &&
+      oldMinorVersion > 0 &&
+      oldBugsVersion > 0 &&
       !!commits
     );
   };
