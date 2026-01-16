@@ -1,12 +1,13 @@
 import { Label } from "@/components/ui/label.tsx";
 import { Input } from "@/components/ui/input.tsx";
 import * as React from "react";
+import type { Number } from "../types/types";
 
 type VersionPickerProps = {
   label: string;
-  setMajorVersion: React.Dispatch<React.SetStateAction<number>>;
-  setMinorVersion: React.Dispatch<React.SetStateAction<number>>;
-  setBugsVersion: React.Dispatch<React.SetStateAction<number>>;
+  setMajorVersion: React.Dispatch<React.SetStateAction<Number>>;
+  setMinorVersion: React.Dispatch<React.SetStateAction<Number>>;
+  setBugsVersion: React.Dispatch<React.SetStateAction<Number>>;
 };
 export const VersionPicker = ({
   label,
@@ -29,7 +30,13 @@ export const VersionPicker = ({
               e.preventDefault();
             }
           }}
-          onChange={(e) => setMajorVersion(Number(e.target.value))}
+          onChange={(e) => {
+            if (e.target.value) {
+              setMajorVersion(Number(e.target.value));
+            } else {
+              setMajorVersion(null);
+            }
+          }}
         />
         .
         <Input
@@ -42,7 +49,13 @@ export const VersionPicker = ({
               e.preventDefault();
             }
           }}
-          onChange={(e) => setMinorVersion(Number(e.target.value))}
+          onChange={(e) => {
+            if (e.target.value) {
+              setMinorVersion(Number(e.target.value));
+            } else {
+              setMinorVersion(null);
+            }
+          }}
         />
         .
         <Input
@@ -55,7 +68,13 @@ export const VersionPicker = ({
               e.preventDefault();
             }
           }}
-          onChange={(e) => setBugsVersion(Number(e.target.value))}
+          onChange={(e) => {
+            if (e.target.value) {
+              setBugsVersion(Number(e.target.value));
+            } else {
+              setBugsVersion(null);
+            }
+          }}
         />
       </div>
     </div>

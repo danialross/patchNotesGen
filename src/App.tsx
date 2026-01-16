@@ -9,6 +9,7 @@ import { Card } from "./components/ui/card";
 import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import { CommitTextField } from "@/components/input/CommitTextField.tsx";
+import type { Number, ReleaseDate } from "./components/types/types";
 
 const branches = [
   "Ent UAT",
@@ -20,19 +21,19 @@ const branches = [
 
 function App() {
   const [branch, setBranch] = useState("");
-  const [date, setDate] = useState<Date | undefined>();
-  const [oldMajorVersion, setOldMajorVersion] = useState(0);
-  const [oldMinorVersion, setOldMinorVersion] = useState(0);
-  const [oldBugsVersion, setOldBugsVersion] = useState(0);
+  const [date, setDate] = useState<ReleaseDate>();
+  const [oldMajorVersion, setOldMajorVersion] = useState<Number>(null);
+  const [oldMinorVersion, setOldMinorVersion] = useState<Number>(null);
+  const [oldBugsVersion, setOldBugsVersion] = useState<Number>(null);
   const [commits, setCommits] = useState("");
 
   const isInputValid = () => {
     return (
       !!branch &&
       !!date &&
-      oldMajorVersion > 0 &&
-      oldMinorVersion > 0 &&
-      oldBugsVersion > 0 &&
+      oldMajorVersion &&
+      oldMinorVersion &&
+      oldBugsVersion != null &&
       !!commits
     );
   };
@@ -64,10 +65,10 @@ function App() {
     }
 
     if (hasFeature) {
-      newMinorVersion = oldMinorVersion + 1;
+      newMinorVersion = oldMinorVersion! + 1;
       newBugsVersion = 0;
     } else {
-      newBugsVersion += 1;
+      newBugsVersion! += 1;
     }
 
     return (

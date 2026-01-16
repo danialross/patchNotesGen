@@ -11,14 +11,15 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import type { ReleaseDate } from "../types/types";
 
 type props = {
-  setValue: React.Dispatch<React.SetStateAction<Date | undefined>>;
+  setValue: React.Dispatch<React.SetStateAction<ReleaseDate>>;
 };
 
 export function DatePicker({ setValue }: props) {
   const [open, setOpen] = React.useState(false);
-  const [date, setDate] = React.useState<Date | undefined>(undefined);
+  const [date, setDate] = React.useState<ReleaseDate>(undefined);
 
   return (
     <div className="w-full flex flex-col gap-3 justify-center items-start">
