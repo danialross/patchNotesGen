@@ -17,6 +17,9 @@ const branches = [
   "Dev-Lite",
   "Staging-Lite",
   "Ent-Train",
+  "Asia Live",
+  "Noble Live",
+  "Dev Ent",
 ];
 
 function App() {
@@ -31,8 +34,8 @@ function App() {
     return (
       !!branch &&
       !!date &&
-      oldMajorVersion &&
-      oldMinorVersion &&
+      oldMajorVersion != null &&
+      oldMinorVersion != null &&
       oldBugsVersion != null &&
       !!commits
     );
