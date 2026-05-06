@@ -4,9 +4,10 @@ import type { Dispatch, SetStateAction } from "react";
 
 type Props = {
   setValue: Dispatch<SetStateAction<string>>;
+  value: string;
 };
 
-export const CommitTextField = ({ setValue }: Props) => {
+export const CommitTextField = ({ value, setValue }: Props) => {
   return (
     <>
       <Label className={"text-sm px-2 font-medium"}>Commits</Label>
@@ -16,6 +17,7 @@ export const CommitTextField = ({ setValue }: Props) => {
         }
         placeholder="Type commit messages here."
         onChange={(e) => setValue(e.target.value)}
+        value={value}
       />
     </>
   );

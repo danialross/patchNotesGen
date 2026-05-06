@@ -37,6 +37,7 @@ export const VersionPicker = ({
               setMajorVersion(null);
             }
           }}
+          onWheel={(e) => e.currentTarget.blur()}
         />
         .
         <Input
@@ -56,6 +57,7 @@ export const VersionPicker = ({
               setMinorVersion(null);
             }
           }}
+          onWheel={(e) => e.currentTarget.blur()}
         />
         .
         <Input
@@ -75,6 +77,7 @@ export const VersionPicker = ({
               setBugsVersion(null);
             }
           }}
+          onWheel={(e) => e.currentTarget.blur()}
         />
       </div>
     </div>

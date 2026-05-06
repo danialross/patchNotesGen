@@ -1,5 +1,4 @@
 import { DatePicker } from "@/components/input/DatePicker.tsx";
-import { Dropdown } from "@/components/input/Dropdown.tsx";
 import { VersionPicker } from "@/components/input/VersionPicker.tsx";
 import { Label } from "@radix-ui/react-label";
 import Logo from "./assets/Account-X-page-logo.png";
@@ -10,20 +9,10 @@ import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import { CommitTextField } from "@/components/input/CommitTextField.tsx";
 import type { Number, ReleaseDate } from "./components/types/types";
-
-const branches = [
-  "Dev Ent",
-  "Dev-Internal",
-  "Staging-Lite",
-  "Ent UAT",
-  "Ent-Train",
-  "Asia Live",
-  "Noble Live",
-  "Production Enterprise 2",
-  "Production Live",
-  "Home Migration",
-  "Demo",
-];
+import { Button } from "@/components/ui/button";
+import GetAppIcon from "@mui/icons-material/GetApp";
+import TextField from "./components/input/TextField";
+import DonutLargeIcon from "@mui/icons-material/DonutLarge";
 
 function App() {
   const [branch, setBranch] = useState("");
@@ -32,6 +21,8 @@ function App() {
   const [oldMinorVersion, setOldMinorVersion] = useState<Number>(null);
   const [oldBugsVersion, setOldBugsVersion] = useState<Number>(null);
   const [commits, setCommits] = useState("");
+  const [branchExist, setBranchExist] = useState<boolean>(true);
+  const [isFetchingCommits, setIsFetchingCommits] = useState<boolean>(false);
 
   const isInputValid = () => {
     return (
@@ -43,6 +34,10 @@ function App() {
       !!commits
     );
   };
+
+  const pad = (n: number) => n.toString().padStart(2, "0");
+  const formatDate = (date: ReleaseDate) =>
+    `${pad(date?.getDate() ?? 0)}/${pad((date?.getMonth() ?? 0) + 1)}/${date?.getFullYear()}`;
 
   const createPatchNotes = () => {
     let enhancement = "Enhancement: \n";
@@ -56,6 +51,7 @@ function App() {
     for (const line of uniqueLines) {
       if (
         line.toLocaleLowerCase().startsWith("feat") ||
+        line.toLocaleLowerCase().startsWith("features") ||
         line.toLocaleLowerCase().startsWith("feature")
       ) {
         enhancement += `- ${line}\n`;
@@ -63,7 +59,10 @@ function App() {
       } else if (
         line.toLocaleLowerCase().startsWith("chore") ||
         line.toLocaleLowerCase().startsWith("fix") ||
-        line.toLocaleLowerCase().startsWith("mirror")
+        line.toLocaleLowerCase().startsWith("mirror") ||
+        line.toLocaleLowerCase().startsWith("issues") ||
+        line.toLocaleLowerCase().startsWith("refactor") ||
+        line.toLocaleLowerCase().startsWith("fixes")
       ) {
         bugFixes += `- ${line}\n`;
         hasBugFix = true;
@@ -80,7 +79,7 @@ function App() {
     return (
       "```\n" +
       `[Release Notes - ${branch} Version v${newMajorVersion}.${newMinorVersion}.${newBugsVersion}]
-Release Date: [${date?.getDate()}/${date ? date.getMonth() + 1 : ""}/${date?.getFullYear()}]
+Release Date: [${formatDate(date)}]
 Version: v${newMajorVersion}.${newMinorVersion}.${newBugsVersion}
 Previous Version: v${oldMajorVersion}.${oldMinorVersion}.${oldBugsVersion}\n
 ` +
@@ -89,6 +88,58 @@ Previous Version: v${oldMajorVersion}.${oldMinorVersion}.${oldBugsVersion}\n
       "```"
     );
   };
+
+  const handleFetchingCommits = async (
+    targetBranch: string,
+    date: ReleaseDate,
+  ) => {
+    const delay = (ms: number) =>
+      new Promise((resolve) => setTimeout(resolve, ms));
+    setIsFetchingCommits(true);
+    await fetchPRsWithCommits(targetBranch, date);
+    delay(5000); // minimum loader time
+    setIsFetchingCommits(false);
+  };
+
+  type Commit = {
+    comment: string;
+  };
+
+  type Repo = {
+    commits?: Commit[];
+  };
+
+  const parsePrs = (data: Repo[]): string => {
+    return data
+      .flatMap((repo) => repo.commits ?? [])
+      .map((commit) => commit.comment)
+      .join("\n");
+  };
+
+  async function fetchPRsWithCommits(targetBranch: string, date: ReleaseDate) {
+    try {
+      const response = await fetch(
+        `https://patch-notes-api.vercel.app/api/prs-with-commits?target=${targetBranch}&date=${formatDate(date)}`,
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      if (data?.totalPRsFound === 0) {
+        setBranchExist(false);
+      } else {
+        setBranchExist(true);
+      }
+
+      const commits = parsePrs(data?.data);
+      setCommits((prev) => prev + "\n" + commits);
+    } catch (error) {
+      console.error("Error fetching PRs:", error);
+    }
+  }
 
   return (
     <div
@@ -108,11 +159,13 @@ Previous Version: v${oldMajorVersion}.${oldMinorVersion}.${oldBugsVersion}\n
           <div className="w-full flex justify-center py-2 ">
             <UnfoldMoreIcon fontSize="large" />
           </div>
+
           <Card>
-            <Dropdown
-              label={"Branch"}
-              options={branches}
+            <TextField
+              label="Branch"
+              placeholder="Enter a Branch..."
               setValue={setBranch}
+              error={!branchExist ? "Invalid Branch" : ""}
             />
           </Card>
           <div className="w-full flex justify-center py-2 ">
@@ -132,12 +185,27 @@ Previous Version: v${oldMajorVersion}.${oldMinorVersion}.${oldBugsVersion}\n
         </div>
         <div className="flex flex-col gap-4 lg:gap-8 xl:flex-row">
           <div className=" w-[350px] lg:w-[450px] h-[315px] lg:h-[335px] xl:h-full flex flex-col gap-4 p-4 bg-gray-50 border-2 border-[#FF9D0A] rounded-md ">
-            <CommitTextField setValue={setCommits} />
+            <CommitTextField value={commits} setValue={setCommits} />
           </div>
-          <div className="flex items-center justify-center transform rotate-90 lg:rotate-0 lg:hidden xl:flex">
+          <div className="pr-2 flex items-center justify-center transform rotate-90 lg:rotate-0 lg:hidden xl:flex">
             <KeyboardDoubleArrowRightIcon fontSize="large" />
           </div>
-          <div className="flex justify-center items-start lg:items-center h-[100px] xl:h-full gap-4">
+          <div className="flex flex-col justify-center items-start lg:items-center h-[100px] xl:h-full gap-4">
+            <Button
+              variant="outline"
+              className={
+                "w-[350px] lg:w-[250px] h-[50px] xl:h-[100px] text-lg hover:bg-[#EE9332] hover:text-white border-none"
+              }
+              onClick={() => handleFetchingCommits(branch, date)}
+              disabled={!date || !branch || isFetchingCommits}
+            >
+              {isFetchingCommits ? (
+                <DonutLargeIcon className="animate-spin" />
+              ) : (
+                <GetAppIcon />
+              )}
+              Fetch Commits
+            </Button>
             <ButtonWithDialog
               disabled={!isInputValid()}
               patchNotes={createPatchNotes()}
