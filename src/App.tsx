@@ -12,14 +12,17 @@ import { CommitTextField } from "@/components/input/CommitTextField.tsx";
 import type { Number, ReleaseDate } from "./components/types/types";
 
 const branches = [
-  "Ent UAT",
+  "Dev Ent",
   "Dev-Internal",
-  "Dev-Lite",
   "Staging-Lite",
+  "Ent UAT",
   "Ent-Train",
   "Asia Live",
   "Noble Live",
-  "Dev Ent",
+  "Production Enterprise 2",
+  "Production Live",
+  "Home Migration",
+  "Demo",
 ];
 
 function App() {
@@ -91,7 +94,8 @@ Previous Version: v${oldMajorVersion}.${oldMinorVersion}.${oldBugsVersion}\n
     <div
       className={
         "bg-[#FFC670] overflow-x-hidden relative min-h-screen flex flex-col justify-start items-center gap-8 py-[7vh] "
-      }>
+      }
+    >
       <div className={"w-[350px] translate-x-6"}>
         <img src={Logo} alt="logo" />
         <Label className={"text-2xl"}>Patch Notes Generator</Label>
