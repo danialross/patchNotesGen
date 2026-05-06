@@ -50,7 +50,8 @@ export function ButtonWithDialog({
           className={
             "w-[350px] lg:w-[250px] h-[50px] lg:h-[100px]  text-lg hover:bg-[#EE9332] hover:text-white border-none"
           }
-          disabled>
+          disabled
+        >
           <HandymanIcon />
           Generate
         </Button>
@@ -60,7 +61,8 @@ export function ButtonWithDialog({
             variant="outline"
             className={
               "w-[350px] lg:w-[250px] h-[50px] lg:h-[100px] text-lg hover:bg-[#EE9332] hover:text-white border-none"
-            }>
+            }
+          >
             <HandymanIcon />
             Generate
           </Button>
@@ -83,7 +85,8 @@ export function ButtonWithDialog({
           <div className="flex justify-evenly w-full ">
             <Button
               onClick={handleCopyText}
-              className="hover:bg-[#B46C00] hover:text-white">
+              className="hover:bg-[#EE9332] hover:text-white"
+            >
               <ContentCopyIcon fontSize={"small"} />
               Copy
             </Button>
@@ -94,7 +97,8 @@ export function ButtonWithDialog({
           </div>
         </AlertDialogFooter>
         <div
-          className={`transition-opacity duration-300 ${isAlerted ? "opacity-100" : "opacity-0"} absolute top-3/4 left-1/2 -translate-1/2 bg-white py-4 px-8 border-2 border-gray-200 rounded-md`}>
+          className={`transition-opacity duration-300 ${isAlerted ? "opacity-100" : "opacity-0"} absolute top-3/4 left-1/2 -translate-1/2 bg-white py-4 px-8 border-2 border-gray-200 rounded-md`}
+        >
           Copied
         </div>
       </AlertDialogContent>
