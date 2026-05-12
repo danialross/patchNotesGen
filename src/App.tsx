@@ -62,6 +62,7 @@ function App() {
         line.toLocaleLowerCase().startsWith("mirror") ||
         line.toLocaleLowerCase().startsWith("issues") ||
         line.toLocaleLowerCase().startsWith("refactor") ||
+        line.toLocaleLowerCase().startsWith("bugs") ||
         line.toLocaleLowerCase().startsWith("fixes")
       ) {
         bugFixes += `- ${line}\n`;
