@@ -84,8 +84,8 @@ Release Date: [${formatDate(date)}]
 Version: v${newMajorVersion}.${newMinorVersion}.${newBugsVersion}
 Previous Version: v${oldMajorVersion}.${oldMinorVersion}.${oldBugsVersion}\n
 ` +
-      `${hasFeature ? enhancement : ""}\n` +
-      `${hasBugFix ? bugFixes : ""}\n` +
+      (hasFeature ? `${enhancement}\n` : "") +
+      (hasBugFix ? `${bugFixes}\n` : "") +
       "```"
     );
   };
